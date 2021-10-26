@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form action="{% url 'thanks_page_url' %}" method="POST">
+     {% csrf_token %}
+<!--    <div>-->
+<!--        <label>Name:</label>    -->
+<!--        <input name="name" type="text">-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <div>-->
+<!--        <label>Phone:</label>-->
+<!--        <input type="text" name="phone"> <br>-->
+<!--    </div>-->
+    {{ form.as_p }}
+    <div style="margin-top: 16px;">
+        <button type="submit">Add Order</button>
+    </div>
+</form>
+<br><br>
+
+
+{% if object_list %}
+    <table cellpadding="15" border="1">
+           <tr>
+               <th>ID:</th>
+               <th>Name:</th>
+               <th>Phone:</th>
+               <th>Date:</th>
+           </tr>
+    {% for item in object_list %}
+           <tr>
+               <td>{{ item.id }} </td>
+               <td>{{ item.order_name }} </td>
+               <td>{{ item.order_phone }} </td>
+               <td>{{ item.order_date }}</td>
+           </tr>
+    {% endfor %}
+    </table>
+{% else %}
+ <h1>Нет данных</h1>
+{% endif %}
+
+</body>
+</html>
